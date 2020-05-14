@@ -67,4 +67,6 @@ int main(int argc, char ** argv)
 
     uint8_t key = gen_key();
     encrypt_decrypt_file(infile, outfile, key);
+
+    print_bit_representation(key);     
 }
