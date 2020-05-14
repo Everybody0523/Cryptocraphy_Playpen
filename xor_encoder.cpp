@@ -46,16 +46,25 @@ void encrypt_decrypt_file(const char * iFileName, const char * oFileName, uint8_
             {
                 outputFile.write(buf, num_bytes);
             }
-            delete buf;
+            delete[] buf;
         }
     }
     inputFile.close();
     outputFile.close();
 }
 
-int main()
+int main(int argc, char ** argv)
 {
+
+    if (argc != 3)
+    {
+        std::cerr << "USAGE: ./a.out <infile> <outfile>" << std::endl;
+        return 1;
+    }
+
+    const char * infile = argv[1];
+    const char * outfile = argv[2];
+
     uint8_t key = gen_key();
-    encrypt_decrypt_file("ugh.txt", "test1.txt", key);
-    encrypt_decrypt_file("test1.txt", "test2.txt", key);
+    encrypt_decrypt_file(infile, outfile, key);
 }
