@@ -44,12 +44,13 @@ void encrypt_decrypt_file(const char * iFileName, const char * oFileName, uint8_
 
             if (outputFile.is_open())
             {
-                if (!(outputFile << buf)) { std::cerr << "Doom!\n"; }
-                
+                outputFile.write(buf, num_bytes);
             }
             delete buf;
         }
     }
+    inputFile.close();
+    outputFile.close();
 }
 
 int main()
